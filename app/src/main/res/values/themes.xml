@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.SoulGuardian" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.SoulGuardian.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">1dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="Theme.SoulGuardian.Dynamic" parent="Base.Theme.SoulGuardian" />
+
+    <style name="Theme.SoulGuardian.Default" parent="Base.Theme.SoulGuardian">
+        <item name="colorPrimary">@color/pink_primary</item>
+        <item name="colorOnPrimary">@color/pink_on_primary</item>
+        <item name="colorPrimaryContainer">@color/pink_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/pink_on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/pink_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/pink_on_secondary_container</item>
+        <item name="colorTertiaryContainer">@color/pink_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/pink_on_tertiary_container</item>
+    </style>
+
+    <style name="Theme.SoulGuardian.Blue" parent="Base.Theme.SoulGuardian">
+        <item name="colorPrimary">@color/blue_primary</item>
+        <item name="colorOnPrimary">@color/blue_on_primary</item>
+        <item name="colorPrimaryContainer">@color/blue_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/blue_on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/blue_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/blue_on_secondary_container</item>
+        <item name="colorTertiaryContainer">@color/blue_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/blue_on_tertiary_container</item>
+    </style>
+
+    <style name="Theme.SoulGuardian.Green" parent="Base.Theme.SoulGuardian">
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorOnPrimary">@color/green_on_primary</item>
+        <item name="colorPrimaryContainer">@color/green_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/green_on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/green_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/green_on_secondary_container</item>
+        <item name="colorTertiaryContainer">@color/green_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/green_on_tertiary_container</item>
+    </style>
+
+    <style name="Theme.SoulGuardian.Orange" parent="Base.Theme.SoulGuardian">
+        <item name="colorPrimary">@color/orange_primary</item>
+        <item name="colorOnPrimary">@color/orange_on_primary</item>
+        <item name="colorPrimaryContainer">@color/orange_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/orange_on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/orange_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/orange_on_secondary_container</item>
+        <item name="colorTertiaryContainer">@color/orange_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/orange_on_tertiary_container</item>
+    </style>
+
+    <style name="Theme.SoulGuardian.Purple" parent="Base.Theme.SoulGuardian">
+        <item name="colorPrimary">@color/purple_primary</item>
+        <item name="colorOnPrimary">@color/purple_on_primary</item>
+        <item name="colorPrimaryContainer">@color/purple_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/purple_on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/purple_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/purple_on_secondary_container</item>
+        <item name="colorTertiaryContainer">@color/purple_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/purple_on_tertiary_container</item>
+    </style>
+
+</resources>

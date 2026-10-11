@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">心灵守护</string>
+    <string name="module_description">抓取所有应用 TextView 的文本，按应用内配置的规则遮蔽违禁词</string>
+    <string name="xposed_activated">模块已激活</string>
+    <string name="xposed_unactivated">模块未激活（Hook 未生效）</string>
+
+    <string name="pref_enable">启用心灵守护</string>
+    <string name="pref_enable_desc">启用后，效果预览会自动处理输入的违禁词</string>
+
+    <string name="section_mode">处理模式</string>
+    <string name="button_mask">遮蔽模式</string>
+    <string name="button_block">阻止模式</string>
+    <string name="label_mask_symbol">遮蔽符号</string>
+    <string name="hint_mask_symbol">例如 * 或 ＃</string>
+
+    <string name="section_lists">违禁词库</string>
+    <string name="lists_hint_regex">支持正则表达式，每行一条；仅当 # 位于行首时该行为注释</string>
+    <string name="button_import">导入词库</string>
+    <string name="export">导出</string>
+    <string name="export_header">心灵守护 导出的词库</string>
+    <string name="export_group_name">心灵守护词库导出.txt</string>
+    <string name="export_group_suffix">（%1$d 条）</string>
+    <string name="export_success">已导出 %2$d 条规则到 %1$s</string>
+    <string name="export_failed">导出失败：%1$s</string>
+    <string name="empty_lists">还没有词库，点击“导入词库”添加</string>
+    <string name="word_count">%1$d 个词</string>
+    <string name="delete_list_title">删除词库</string>
+    <string name="delete_list_message">确定要删除“%1$s”吗？</string>
+    <string name="delete">删除</string>
+    <string name="cancel">取消</string>
+
+    <string name="section_preview">效果预览</string>
+    <string name="hint_preview">在这里输入文字试试</string>
+    <string name="preview_result_label">处理后</string>
+
+    <string name="section_appearance">外观</string>
+    <string name="label_theme">主题配色</string>
+    <string name="chip_dynamic">动态取色</string>
+    <string name="chip_pink">粉色</string>
+    <string name="chip_blue">蓝色</string>
+    <string name="chip_green">绿色</string>
+    <string name="chip_orange">橙色</string>
+    <string name="chip_purple">紫色</string>
+    <string name="label_night">深色模式</string>
+    <string name="button_night_system">跟随系统</string>
+    <string name="button_night_light">浅色</string>
+    <string name="button_night_dark">深色</string>
+
+    <string name="import_success">已导入词库“%1$s”，共 %2$d 个词</string>
+    <string name="import_empty">文件中没有可用的词条</string>
+    <string name="import_failed">导入失败：%1$s</string>
+</resources>

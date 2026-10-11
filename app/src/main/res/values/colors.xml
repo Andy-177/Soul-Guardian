@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FCE4EC</color>
+
+    <!-- Pink (default, matches the shield logo) -->
+    <color name="pink_primary">#C2185B</color>
+    <color name="pink_on_primary">#FFFFFF</color>
+    <color name="pink_primary_container">#FFD9E2</color>
+    <color name="pink_on_primary_container">#3E001D</color>
+    <color name="pink_secondary_container">#F7D6DE</color>
+    <color name="pink_on_secondary_container">#2B151C</color>
+    <color name="pink_tertiary_container">#FFDCC1</color>
+    <color name="pink_on_tertiary_container">#2E1600</color>
+
+    <!-- Blue -->
+    <color name="blue_primary">#0B57D0</color>
+    <color name="blue_on_primary">#FFFFFF</color>
+    <color name="blue_primary_container">#D8E2FF</color>
+    <color name="blue_on_primary_container">#001A41</color>
+    <color name="blue_secondary_container">#D8E2FF</color>
+    <color name="blue_on_secondary_container">#001A41</color>
+    <color name="blue_tertiary_container">#CFE5FF</color>
+    <color name="blue_on_tertiary_container">#001E30</color>
+
+    <!-- Green -->
+    <color name="green_primary">#2E6A3E</color>
+    <color name="green_on_primary">#FFFFFF</color>
+    <color name="green_primary_container">#B2F1BB</color>
+    <color name="green_on_primary_container">#002108</color>
+    <color name="green_secondary_container">#B7F0C0</color>
+    <color name="green_on_secondary_container">#00210B</color>
+    <color name="green_tertiary_container">#A9F0C5</color>
+    <color name="green_on_tertiary_container">#00210F</color>
+
+    <!-- Orange -->
+    <color name="orange_primary">#8A5100</color>
+    <color name="orange_on_primary">#FFFFFF</color>
+    <color name="orange_primary_container">#FFDCBE</color>
+    <color name="orange_on_primary_container">#2C1600</color>
+    <color name="orange_secondary_container">#FFDCBE</color>
+    <color name="orange_on_secondary_container">#2C1600</color>
+    <color name="orange_tertiary_container">#FDDDBB</color>
+    <color name="orange_on_tertiary_container">#2C1600</color>
+
+    <!-- Purple (Material baseline) -->
+    <color name="purple_primary">#6750A4</color>
+    <color name="purple_on_primary">#FFFFFF</color>
+    <color name="purple_primary_container">#EADDFF</color>
+    <color name="purple_on_primary_container">#21005D</color>
+    <color name="purple_secondary_container">#E8DEF8</color>
+    <color name="purple_on_secondary_container">#1D192B</color>
+    <color name="purple_tertiary_container">#FFD8E4</color>
+    <color name="purple_on_tertiary_container">#31111D</color>
+</resources>
