@@ -109,14 +109,20 @@ public final class TextMaskHook extends XC_MethodHook {
         }
         CharSequence filtered = current.filter(raw);
         if (filtered != raw) {
+            boolean isHint = "setHint".equals(param.method.getName());
             GUARD.set(Boolean.TRUE);
             try {
                 param.setResult(null);
-                view.setText(filtered);
+                if (isHint) {
+                    view.setHint(filtered);
+                } else {
+                    view.setText(filtered);
+                }
             } finally {
                 GUARD.set(Boolean.FALSE);
             }
-            Log.d(TAG, "[" + packageName + "] filtered(res): " + filtered);
+            Log.d(TAG, "[" + packageName + "] filtered" + (isHint ? "(hint)" : "(res)")
+                    + ": " + filtered);
         }
     }
 }

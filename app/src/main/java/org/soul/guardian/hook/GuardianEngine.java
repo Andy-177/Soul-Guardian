@@ -34,6 +34,11 @@ public final class GuardianEngine {
         hookSetText(hook, "setText", int.class);
         hookSetText(hook, "setText", int.class, TextView.BufferType.class);
 
+        hookSetText(hook, "setHint", CharSequence.class);
+        hookSetText(hook, "setHint", int.class);
+        hookSetText(hook, "setHint", CharSequence.class, TextView.BufferType.class,
+                boolean.class);
+
         Context context = currentApplication();
         Log.d(TAG, "[" + packageName + "] install: setText hooked, context="
                 + (context != null));
