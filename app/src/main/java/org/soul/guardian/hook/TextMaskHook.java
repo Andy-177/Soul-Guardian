@@ -6,10 +6,6 @@ import android.widget.TextView;
 
 import org.soul.guardian.core.FilterConfig;
 
-import java.util.Collections;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
 import de.robv.android.xposed.XC_MethodHook;
 
 /**
@@ -34,10 +30,6 @@ public final class TextMaskHook extends XC_MethodHook {
         }
     };
 
-    /** Processes whose first text call has already been logged, for a one-line-per-process diagnostic. */
-    private static final Set<String> FIRE_LOGGED =
-            Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
-
     private volatile String packageName;
     private volatile FilterConfig config;
 
@@ -58,10 +50,6 @@ public final class TextMaskHook extends XC_MethodHook {
     protected void beforeHookedMethod(MethodHookParam param) {
         if (Boolean.TRUE.equals(GUARD.get()) || param.args.length == 0) {
             return;
-        }
-        if (FIRE_LOGGED.add(packageName)) {
-            Log.i(TAG, "[" + packageName + "] hook fired: " + param.method.getName()
-                    + " pid=" + android.os.Process.myPid());
         }
         try {
             FilterConfig current = config;
