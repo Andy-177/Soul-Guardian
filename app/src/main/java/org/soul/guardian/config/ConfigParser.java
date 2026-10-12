@@ -19,17 +19,30 @@ public final class ConfigParser {
     }
 
     /**
-     * A line is a comment only when {@code #} is the very first character. A {@code #}
-     * anywhere else is part of the regular expression.
+     * A line is a comment only when {@code #} is the very first character. A leading
+     * backslash escapes it, so {@code \#...} is a plain-text rule instead of a comment.
      */
     public static boolean isComment(String line) {
         return line != null && !line.isEmpty() && line.charAt(0) == '#';
     }
 
+    /** Whether the rule line is a regular expression ({@code %} or {@code @}) rather than text. */
+    public static boolean isRegexLine(String line) {
+        if (line == null || line.isEmpty()) {
+            return false;
+        }
+        char marker = line.charAt(0);
+        if (marker == '\\') {
+            return false;
+        }
+        return marker == '%' || marker == '@';
+    }
+
     /**
-     * Reads rule lines (one regular expression per line) from the given reader.
+     * Reads rule lines (plain text, regexes and the exclusion variants) from the given reader.
      * Comment lines ({@code #} at column 0) and blank lines are skipped; duplicates are
-     * collapsed while preserving order.
+     * collapsed while preserving order. The leading marker is kept so the rule set can be
+     * classified later.
      */
     public static List<String> readRules(BufferedReader reader) throws IOException {
         List<String> rules = new ArrayList<>();
@@ -103,19 +116,24 @@ public final class ConfigParser {
                 if (!selected) {
                     continue;
                 }
-                JSONArray words = list.optJSONArray("words");
-                if (words != null) {
-                    for (int j = 0; j < words.length(); j++) {
-                        String word = words.optString(j);
-                        if (word != null && !word.isEmpty()) {
-                            out.add(word);
-                        }
-                    }
-                }
+                appendArray(list.optJSONArray("words"), out);
+                appendArray(list.optJSONArray("regex"), out);
             }
         } catch (Throwable ignored) {
             return Collections.emptyList();
         }
         return out;
+    }
+
+    private static void appendArray(JSONArray array, List<String> out) {
+        if (array == null) {
+            return;
+        }
+        for (int i = 0; i < array.length(); i++) {
+            String word = array.optString(i);
+            if (word != null && !word.isEmpty()) {
+                out.add(word);
+            }
+        }
     }
 }
