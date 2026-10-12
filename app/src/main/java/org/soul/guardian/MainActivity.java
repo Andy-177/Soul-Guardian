@@ -56,6 +56,7 @@ public final class MainActivity extends AppCompatActivity implements BannedListA
     private ChipGroup chipGroupTheme;
     private MaterialButtonToggleGroup toggleNight;
     private MaterialButton buttonImport;
+    private MaterialSwitch switchTestMode;
 
     private ActivityResultLauncher<String[]> importLauncher;
     private ActivityResultLauncher<String> exportLauncher;
@@ -87,6 +88,7 @@ public final class MainActivity extends AppCompatActivity implements BannedListA
         chipGroupTheme = findViewById(R.id.chipGroupTheme);
         toggleNight = findViewById(R.id.toggleNight);
         buttonImport = findViewById(R.id.buttonImport);
+        switchTestMode = findViewById(R.id.switchTestMode);
 
         textModuleStatus.setText(isModuleActivated()
                 ? R.string.xposed_activated : R.string.xposed_unactivated);
@@ -160,6 +162,13 @@ public final class MainActivity extends AppCompatActivity implements BannedListA
 
         buttonImport.setOnClickListener(v -> importLauncher.launch(new String[]{"text/plain"}));
 
+        switchTestMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (!loading) {
+                repo.setTestMode(isChecked);
+                updatePreview();
+            }
+        });
+
         inputPreview.addTextChangedListener(new SimpleWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -178,6 +187,7 @@ public final class MainActivity extends AppCompatActivity implements BannedListA
         inputMaskSymbol.setText(repo.getMaskSymbol());
         chipGroupTheme.check(themeChipId(ThemeUtil.getThemeKey(this)));
         toggleNight.check(nightButtonId(ThemeUtil.getNightMode(this)));
+        switchTestMode.setChecked(repo.isTestMode());
         refreshLists();
         updatePreview();
         loading = false;
@@ -193,7 +203,7 @@ public final class MainActivity extends AppCompatActivity implements BannedListA
         CharSequence raw = inputPreview.getText();
         String input = raw == null ? "" : raw.toString();
         FilterConfig config = new FilterConfig(
-                repo.isEnabled(), repo.getMode(), repo.getMaskSymbol(),
+                repo.isEnabled(), repo.getMode(), repo.getMaskSymbol(), repo.isTestMode(),
                 repo.getActiveWords());
         CharSequence filtered = config.filter(input);
         textPreviewOutput.setText(filtered);

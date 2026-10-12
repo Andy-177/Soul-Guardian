@@ -3,6 +3,7 @@ package org.soul.guardian;
 import android.util.Log;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
@@ -12,47 +13,35 @@ import org.soul.guardian.hook.GuardianEngine;
 /**
  * Xposed entry point.
  *
- * <p>Two jobs:
- * <ul>
- *   <li>In this module's own process it flips {@link MainActivity#isModuleActivated()} so the
- *       UI can report whether the module is active in the Xposed manager.</li>
- *   <li>In every other process it installs {@link GuardianEngine}, which masks banned words
- *       in {@code TextView} text using the word lists bundled inside this module's APK.</li>
- * </ul>
+ * <p>The text hooks are installed once in the zygote ({@link #initZygote}) so the framework
+ * {@code TextView}/{@code Canvas} methods are hooked before any app forks; this is what makes the
+ * hooks actually take effect on boot-class methods. {@link #handleLoadPackage} only handles this
+ * module's own process, flipping {@link MainActivity#isModuleActivated()} so the UI can report
+ * whether the module is active in the Xposed manager.
  */
-public class HookInit implements IXposedHookLoadPackage {
+public class HookInit implements IXposedHookZygoteInit, IXposedHookLoadPackage {
 
     private static final String SELF_PACKAGE = "org.soul.guardian";
     private static final String TAG = "SoulGuardian";
 
-    private static volatile GuardianEngine textHook;
+    @Override
+    public void initZygote(StartupParam startupParam) {
+        GuardianEngine.installGlobal();
+    }
 
     @Override
-    public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
-        if (SELF_PACKAGE.equals(lpparam.packageName)) {
+    public void handleLoadPackage(LoadPackageParam lpparam) {
+        if (!SELF_PACKAGE.equals(lpparam.packageName)) {
+            return;
+        }
+        try {
             XposedHelpers.findAndHookMethod(
                     MainActivity.class.getName(),
                     lpparam.classLoader,
                     "isModuleActivated",
                     XC_MethodReplacement.returnConstant(true));
-            return;
-        }
-        installTextViewHook(lpparam);
-    }
-
-    private static void installTextViewHook(LoadPackageParam lpparam) {
-        try {
-            hook(lpparam.packageName).install();
-            Log.d(TAG, "TextView hook ready in " + lpparam.packageName);
         } catch (Throwable t) {
-            Log.d(TAG, "failed to hook " + lpparam.packageName + " -> " + t);
+            Log.d(TAG, "self activation hook failed -> " + t);
         }
-    }
-
-    private static synchronized GuardianEngine hook(String packageName) {
-        if (textHook == null) {
-            textHook = new GuardianEngine(packageName);
-        }
-        return textHook;
     }
 }

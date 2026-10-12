@@ -14,6 +14,7 @@ public final class WordsContract {
     public static final String COLUMN_ENABLED = "enabled";
     public static final String COLUMN_MODE = "mode";
     public static final String COLUMN_MASK = "mask";
+    public static final String COLUMN_TEST_MODE = "test_mode";
 
     private WordsContract() {
     }

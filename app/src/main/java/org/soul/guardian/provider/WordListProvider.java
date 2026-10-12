@@ -47,12 +47,14 @@ public final class WordListProvider extends ContentProvider {
         }
         if ("/config".equals(path)) {
             MatrixCursor cursor = new MatrixCursor(new String[]{
-                    WordsContract.COLUMN_ENABLED, WordsContract.COLUMN_MODE, WordsContract.COLUMN_MASK});
+                    WordsContract.COLUMN_ENABLED, WordsContract.COLUMN_MODE, WordsContract.COLUMN_MASK,
+                    WordsContract.COLUMN_TEST_MODE});
             cursor.addRow(new Object[]{
                     repo.isEnabled() ? 1 : 0,
                     repo.getMode() == FilterConfig.Mode.BLOCK
                             ? ConfigKeys.MODE_BLOCK : ConfigKeys.MODE_MASK,
-                    repo.getMaskSymbol()});
+                    repo.getMaskSymbol(),
+                    repo.isTestMode() ? 1 : 0});
             cursor.setNotificationUri(context.getContentResolver(), WordsContract.CONFIG_URI);
             return cursor;
         }

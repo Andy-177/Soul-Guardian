@@ -47,6 +47,10 @@
     <string name="button_night_light">浅色</string>
     <string name="button_night_dark">深色</string>
 
+    <string name="section_debug">调试</string>
+    <string name="pref_test_mode">测试模式</string>
+    <string name="pref_test_mode_desc">开启后会将手机的所有文本替换为遮蔽符号，用于验证 Hook 是否生效</string>
+
     <string name="import_success">已导入词库“%1$s”，共 %2$d 个词</string>
     <string name="import_empty">文件中没有可用的词条</string>
     <string name="import_failed">导入失败：%1$s</string>

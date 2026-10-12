@@ -88,6 +88,7 @@ public final class WordsSync {
         boolean enabled;
         String mode;
         String mask;
+        boolean testMode;
         try {
             Cursor config = appContext.getContentResolver().query(
                     WordsContract.CONFIG_URI, null, null, null, null);
@@ -104,6 +105,8 @@ public final class WordsSync {
                         config.getColumnIndexOrThrow(WordsContract.COLUMN_MODE));
                 mask = config.getString(
                         config.getColumnIndexOrThrow(WordsContract.COLUMN_MASK));
+                testMode = config.getInt(
+                        config.getColumnIndexOrThrow(WordsContract.COLUMN_TEST_MODE)) != 0;
             } finally {
                 config.close();
             }
@@ -135,6 +138,6 @@ public final class WordsSync {
         }
         FilterConfig.Mode modeEnum = ConfigKeys.MODE_BLOCK.equals(mode)
                 ? FilterConfig.Mode.BLOCK : FilterConfig.Mode.MASK;
-        return new FilterConfig(enabled, modeEnum, mask, rules);
+        return new FilterConfig(enabled, modeEnum, mask, testMode, rules);
     }
 }

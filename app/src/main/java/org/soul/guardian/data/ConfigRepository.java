@@ -89,6 +89,19 @@ public final class ConfigRepository {
         notifyWordsChanged();
     }
 
+    /**
+     * Debug switch: when on, every character of every text is replaced with the mask symbol,
+     * bypassing the word lists and the enable flag entirely.
+     */
+    public boolean isTestMode() {
+        return prefs.getBoolean(ConfigKeys.KEY_TEST_MODE, false);
+    }
+
+    public void setTestMode(boolean testMode) {
+        write(prefs.edit().putBoolean(ConfigKeys.KEY_TEST_MODE, testMode));
+        notifyWordsChanged();
+    }
+
     // ---- banned lists -----------------------------------------------------
 
     public List<BannedList> getLists() {

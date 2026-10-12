@@ -11,6 +11,7 @@ public final class ConfigKeys {
     public static final String KEY_ENABLED = "enabled";
     public static final String KEY_MODE = "mode";
     public static final String KEY_MASK_SYMBOL = "mask_symbol";
+    public static final String KEY_TEST_MODE = "test_mode";
     public static final String KEY_ACTIVE_LIST_IDS = "active_list_ids";
     public static final String KEY_LISTS = "lists_json";
 
